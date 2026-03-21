@@ -1,104 +1,78 @@
 /**
  * G&J Window Tinting — Canvas Animations
- * 1. Hero: floating light particles + tint film dust
- * 2. About: starfield (Starlight Headliner theme)
+ * Blue/teal light particles through tinted glass + starfield
  */
-
 (function () {
   'use strict';
 
-  /* ============================================================
-     UTILITY
-  ============================================================ */
-  function rand(min, max) {
-    return Math.random() * (max - min) + min;
-  }
+  function rand(a, b) { return Math.random() * (b - a) + a; }
 
-  function hexToRgb(hex) {
-    const r = parseInt(hex.slice(1, 3), 16);
-    const g = parseInt(hex.slice(3, 5), 16);
-    const b = parseInt(hex.slice(5, 7), 16);
-    return { r, g, b };
-  }
+  /* colour palette — blues, teals, purples, gold accent */
+  const COLOURS = [
+    { r: 0,   g: 200, b: 255 }, // cyan
+    { r: 0,   g: 160, b: 255 }, // sky blue
+    { r: 80,  g: 0,   b: 255 }, // violet
+    { r: 0,   g: 255, b: 200 }, // teal
+    { r: 120, g: 80,  b: 255 }, // purple
+    { r: 232, g: 160, b: 0   }, // gold accent
+  ];
 
-  const GOLD   = hexToRgb('#e8a000');
-  const ORANGE = hexToRgb('#ff6b00');
-  const WHITE  = { r: 255, g: 255, b: 255 };
+  function pickColour() { return COLOURS[Math.floor(Math.random() * COLOURS.length)]; }
 
   /* ============================================================
-     1. HERO CANVAS — Floating particles (light dust through film)
+     HERO CANVAS — floating light dust through tinted glass
   ============================================================ */
   function initHeroCanvas() {
     const canvas = document.getElementById('heroCanvas');
     if (!canvas) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { canvas.style.display = 'none'; return; }
 
     const ctx = canvas.getContext('2d');
     let W, H, particles, animId;
-
-    /* Skip heavy canvas on low-power devices */
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      canvas.style.display = 'none';
-      return;
-    }
 
     function resize() {
       W = canvas.width  = canvas.offsetWidth;
       H = canvas.height = canvas.offsetHeight;
     }
 
-    function createParticle() {
-      const col = Math.random() > 0.6 ? GOLD : Math.random() > 0.5 ? ORANGE : WHITE;
+    function newParticle() {
+      const col = pickColour();
       return {
-        x:     rand(0, W),
-        y:     rand(0, H),
-        r:     rand(0.5, 2.8),
-        vx:    rand(-0.3, 0.3),
-        vy:    rand(-0.6, -0.1),       // float upward
-        alpha: rand(0.05, 0.45),
-        dalpha: rand(0.002, 0.007),    // fade in/out speed
+        x: rand(0, W), y: rand(0, H),
+        r: rand(0.4, 2.5),
+        vx: rand(-0.25, 0.25),
+        vy: rand(-0.55, -0.08),
+        alpha: rand(0.05, 0.5),
+        dalpha: rand(0.002, 0.008),
         fading: false,
         col,
-        // some particles are elongated (like dust streaks)
-        streak: Math.random() > 0.75,
-        streakLen: rand(6, 22),
-        angle: rand(-0.4, 0.4),
+        streak: Math.random() > 0.7,
+        streakLen: rand(8, 28),
+        angle: rand(-0.5, 0.5),
       };
-    }
-
-    function initParticles() {
-      const count = Math.min(Math.floor((W * H) / 5000), 120);
-      particles = [];
-      for (let i = 0; i < count; i++) {
-        const p = createParticle();
-        p.y = rand(0, H); // spread initially
-        particles.push(p);
-      }
     }
 
     function drawParticle(p) {
       ctx.save();
       ctx.globalAlpha = p.alpha;
-
       if (p.streak) {
-        // Light streak
         ctx.translate(p.x, p.y);
         ctx.rotate(p.angle + Math.atan2(p.vy, p.vx));
-        const grad = ctx.createLinearGradient(-p.streakLen / 2, 0, p.streakLen / 2, 0);
-        grad.addColorStop(0, `rgba(${p.col.r},${p.col.g},${p.col.b},0)`);
-        grad.addColorStop(0.5, `rgba(${p.col.r},${p.col.g},${p.col.b},1)`);
-        grad.addColorStop(1, `rgba(${p.col.r},${p.col.g},${p.col.b},0)`);
-        ctx.strokeStyle = grad;
+        const g = ctx.createLinearGradient(-p.streakLen / 2, 0, p.streakLen / 2, 0);
+        g.addColorStop(0,   `rgba(${p.col.r},${p.col.g},${p.col.b},0)`);
+        g.addColorStop(0.5, `rgba(${p.col.r},${p.col.g},${p.col.b},1)`);
+        g.addColorStop(1,   `rgba(${p.col.r},${p.col.g},${p.col.b},0)`);
+        ctx.strokeStyle = g;
         ctx.lineWidth = p.r;
         ctx.beginPath();
         ctx.moveTo(-p.streakLen / 2, 0);
-        ctx.lineTo(p.streakLen / 2, 0);
+        ctx.lineTo( p.streakLen / 2, 0);
         ctx.stroke();
       } else {
-        // Glowing dot
-        const grd = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
-        grd.addColorStop(0, `rgba(${p.col.r},${p.col.g},${p.col.b},1)`);
-        grd.addColorStop(1, `rgba(${p.col.r},${p.col.g},${p.col.b},0)`);
-        ctx.fillStyle = grd;
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+        g.addColorStop(0, `rgba(${p.col.r},${p.col.g},${p.col.b},1)`);
+        g.addColorStop(1, `rgba(${p.col.r},${p.col.g},${p.col.b},0)`);
+        ctx.fillStyle = g;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
         ctx.fill();
@@ -106,134 +80,92 @@
       ctx.restore();
     }
 
+    function initParticles() {
+      const n = Math.min(Math.floor(W * H / 4800), 130);
+      particles = Array.from({ length: n }, newParticle);
+    }
+
     function update() {
       ctx.clearRect(0, 0, W, H);
-
       particles.forEach(function (p, i) {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        // Fade in / out
-        if (!p.fading) {
-          p.alpha += p.dalpha;
-          if (p.alpha >= 0.45) p.fading = true;
-        } else {
-          p.alpha -= p.dalpha;
-        }
-
-        // Reset when faded out or off screen
-        if (p.alpha <= 0 || p.y < -10 || p.x < -20 || p.x > W + 20) {
-          particles[i] = createParticle();
+        p.x += p.vx; p.y += p.vy;
+        if (!p.fading) { p.alpha += p.dalpha; if (p.alpha >= 0.5) p.fading = true; }
+        else           { p.alpha -= p.dalpha; }
+        if (p.alpha <= 0 || p.y < -10 || p.x < -30 || p.x > W + 30) {
+          particles[i] = newParticle();
           particles[i].y = H + 5;
           particles[i].alpha = 0;
           particles[i].fading = false;
         }
-
         drawParticle(p);
       });
-
       animId = requestAnimationFrame(update);
     }
 
-    // Init
-    resize();
-    initParticles();
-    update();
+    resize(); initParticles(); update();
 
-    // Responsive
-    let resizeTimer;
+    let rt;
     window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        cancelAnimationFrame(animId);
-        resize();
-        initParticles();
-        update();
-      }, 250);
+      clearTimeout(rt);
+      rt = setTimeout(function () { cancelAnimationFrame(animId); resize(); initParticles(); update(); }, 250);
     });
-
-    // Pause when tab hidden (performance)
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) {
-        cancelAnimationFrame(animId);
-      } else {
-        update();
-      }
+      if (document.hidden) cancelAnimationFrame(animId); else update();
     });
   }
 
   /* ============================================================
-     2. ABOUT CANVAS — Starfield (Starlight Headliner theme)
+     ABOUT CANVAS — starfield (starlight headliner theme)
   ============================================================ */
   function initStarCanvas() {
     const canvas = document.getElementById('starCanvas');
     if (!canvas) return;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      canvas.style.display = 'none';
-      return;
-    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { canvas.style.display = 'none'; return; }
 
     const ctx = canvas.getContext('2d');
-    let W, H, stars, shootingStars, animId;
+    let W, H, stars, shooters, animId, running = false;
 
     function resize() {
       W = canvas.width  = canvas.offsetWidth;
       H = canvas.height = canvas.offsetHeight;
     }
 
-    function createStar() {
+    function newStar() {
       return {
-        x:      rand(0, W),
-        y:      rand(0, H),
-        r:      rand(0.3, 1.8),
-        alpha:  rand(0.1, 0.8),
-        speed:  rand(0.003, 0.012),
-        phase:  rand(0, Math.PI * 2),
-        // some stars are warm gold, some cool white
-        warm:   Math.random() > 0.6,
+        x: rand(0, W), y: rand(0, H),
+        r: rand(0.3, 1.8),
+        alpha: rand(0.1, 0.8),
+        speed: rand(0.003, 0.012),
+        phase: rand(0, Math.PI * 2),
+        col: Math.random() > 0.5
+          ? { r: 0, g: 200, b: 255 }   // cyan star
+          : { r: 180, g: 160, b: 255 }, // lavender star
       };
     }
 
-    function createShootingStar() {
+    function newShooter() {
       return {
-        x:     rand(W * 0.1, W * 0.9),
-        y:     rand(0, H * 0.4),
-        len:   rand(60, 140),
-        speed: rand(4, 9),
-        alpha: 0,
-        active: false,
-        angle: rand(0.3, 0.7),    // radians (diagonal)
-        progress: 0,
-        // fire after random delay
-        delay: rand(2000, 8000),
-        lastFired: performance.now(),
+        x: rand(W * 0.1, W * 0.9), y: rand(0, H * 0.35),
+        len: rand(70, 160), speed: rand(4, 10),
+        alpha: 0, active: false, progress: 0,
+        angle: rand(0.3, 0.65),
+        delay: rand(2000, 9000), lastFired: performance.now(),
       };
     }
 
     function initStars() {
-      const count = Math.min(Math.floor((W * H) / 3000), 200);
-      stars = [];
-      for (let i = 0; i < count; i++) stars.push(createStar());
-
-      shootingStars = [];
-      for (let i = 0; i < 3; i++) shootingStars.push(createShootingStar());
+      const n = Math.min(Math.floor(W * H / 2800), 220);
+      stars    = Array.from({ length: n }, newStar);
+      shooters = Array.from({ length: 3 },  newShooter);
     }
 
-    function drawStars(ts) {
+    function draw(ts) {
       ctx.clearRect(0, 0, W, H);
-
-      // Static stars with gentle twinkle
       stars.forEach(function (s) {
-        const twinkle = 0.5 + 0.5 * Math.sin(ts * s.speed + s.phase);
-        const alpha   = s.alpha * twinkle;
-        const col     = s.warm
-          ? `rgba(255, 220, 120, ${alpha})`
-          : `rgba(220, 230, 255, ${alpha})`;
-
-        // Glow
+        const tw  = 0.5 + 0.5 * Math.sin(ts * s.speed + s.phase);
+        const a   = s.alpha * tw;
         const grd = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 2.5);
-        grd.addColorStop(0, col);
+        grd.addColorStop(0, `rgba(${s.col.r},${s.col.g},${s.col.b},${a})`);
         grd.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = grd;
         ctx.beginPath();
@@ -241,120 +173,68 @@
         ctx.fill();
       });
 
-      // Shooting stars
-      shootingStars.forEach(function (ss) {
+      shooters.forEach(function (ss) {
         const now = performance.now();
-
         if (!ss.active) {
-          if (now - ss.lastFired > ss.delay) {
-            ss.active   = true;
-            ss.progress = 0;
-            ss.alpha    = 0;
-            ss.x        = rand(W * 0.1, W * 0.9);
-            ss.y        = rand(0, H * 0.3);
-          }
+          if (now - ss.lastFired > ss.delay) { ss.active = true; ss.progress = 0; ss.alpha = 0; ss.x = rand(W*0.1, W*0.9); ss.y = rand(0, H*0.3); }
           return;
         }
-
         ss.progress += ss.speed / ss.len;
-
-        if (ss.progress < 0.3) {
-          ss.alpha = ss.progress / 0.3;
-        } else if (ss.progress > 0.7) {
-          ss.alpha = (1 - ss.progress) / 0.3;
-        } else {
-          ss.alpha = 1;
-        }
+        if      (ss.progress < 0.3) ss.alpha = ss.progress / 0.3;
+        else if (ss.progress > 0.7) ss.alpha = (1 - ss.progress) / 0.3;
+        else                         ss.alpha = 1;
 
         const ex = ss.x + Math.cos(ss.angle) * ss.len * ss.progress;
         const ey = ss.y + Math.sin(ss.angle) * ss.len * ss.progress;
         const sx = ex - Math.cos(ss.angle) * Math.min(ss.len * 0.4, ss.len * ss.progress);
         const sy = ey - Math.sin(ss.angle) * Math.min(ss.len * 0.4, ss.len * ss.progress);
 
-        const grad = ctx.createLinearGradient(sx, sy, ex, ey);
-        grad.addColorStop(0, `rgba(255, 220, 100, 0)`);
-        grad.addColorStop(0.6, `rgba(255, 240, 180, ${ss.alpha * 0.7})`);
-        grad.addColorStop(1, `rgba(255, 255, 255, ${ss.alpha})`);
-
+        const g = ctx.createLinearGradient(sx, sy, ex, ey);
+        g.addColorStop(0,   'rgba(0,200,255,0)');
+        g.addColorStop(0.6, `rgba(100,220,255,${ss.alpha * 0.7})`);
+        g.addColorStop(1,   `rgba(255,255,255,${ss.alpha})`);
         ctx.save();
-        ctx.strokeStyle = grad;
-        ctx.lineWidth   = 1.5;
+        ctx.strokeStyle = g;
+        ctx.lineWidth = 1.5;
         ctx.beginPath();
         ctx.moveTo(sx, sy);
         ctx.lineTo(ex, ey);
         ctx.stroke();
         ctx.restore();
 
-        if (ss.progress >= 1) {
-          ss.active    = false;
-          ss.lastFired = performance.now();
-          ss.delay     = rand(3000, 10000);
-        }
+        if (ss.progress >= 1) { ss.active = false; ss.lastFired = performance.now(); ss.delay = rand(3000, 11000); }
       });
     }
 
-    function loop(ts) {
-      drawStars(ts / 1000);
-      animId = requestAnimationFrame(loop);
-    }
+    function loop(ts) { draw(ts / 1000); animId = requestAnimationFrame(loop); }
 
-    // Only run when about section is in view (performance)
-    const aboutSection = document.getElementById('about');
-    let running = false;
-
-    if ('IntersectionObserver' in window && aboutSection) {
-      const obs = new IntersectionObserver(function (entries) {
+    const about = document.getElementById('about');
+    if ('IntersectionObserver' in window && about) {
+      new IntersectionObserver(function (entries) {
         if (entries[0].isIntersecting) {
-          if (!running) {
-            running = true;
-            resize();
-            initStars();
-            animId = requestAnimationFrame(loop);
-          }
+          if (!running) { running = true; resize(); initStars(); animId = requestAnimationFrame(loop); }
         } else {
-          if (running) {
-            cancelAnimationFrame(animId);
-            running = false;
-          }
+          if (running) { cancelAnimationFrame(animId); running = false; }
         }
-      }, { threshold: 0.1 });
-      obs.observe(aboutSection);
+      }, { threshold: 0.1 }).observe(about);
     } else {
-      resize();
-      initStars();
-      animId = requestAnimationFrame(loop);
+      resize(); initStars(); animId = requestAnimationFrame(loop);
     }
 
-    let resizeTimer;
+    let rt;
     window.addEventListener('resize', function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        cancelAnimationFrame(animId);
-        running = false;
-        resize();
-        initStars();
-      }, 300);
+      clearTimeout(rt);
+      rt = setTimeout(function () { cancelAnimationFrame(animId); running = false; resize(); initStars(); }, 300);
     });
-
     document.addEventListener('visibilitychange', function () {
-      if (document.hidden) {
-        cancelAnimationFrame(animId);
-        running = false;
-      }
+      if (document.hidden) { cancelAnimationFrame(animId); running = false; }
     });
   }
 
-  /* ============================================================
-     INIT on DOM ready
-  ============================================================ */
+  /* init */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      initHeroCanvas();
-      initStarCanvas();
-    });
+    document.addEventListener('DOMContentLoaded', function () { initHeroCanvas(); initStarCanvas(); });
   } else {
-    initHeroCanvas();
-    initStarCanvas();
+    initHeroCanvas(); initStarCanvas();
   }
-
 })();

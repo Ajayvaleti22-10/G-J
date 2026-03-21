@@ -1,413 +1,337 @@
 /* ============================================================
-   G&J Window Tinting — Animated Backgrounds
-   All CSS/Canvas — zero external images, zero copyright issues
+   G&J Window Tinting — Vibrant Animated Backgrounds
+   Deep blues, teals, purples — light refracting through film
    ============================================================ */
+
+:root {
+  --clr-bg:    #050d1a;
+  --clr-bg-2:  #071422;
+  --clr-bg-3:  #0a1c2e;
+  --clr-border: rgba(80, 180, 255, 0.08);
+}
 
 /* ============================================================
-   HERO — Canvas + Light Rays + Glass Panes
+   HERO
    ============================================================ */
-
+.hero {
+  background: linear-gradient(160deg, #030d1c 0%, #071830 40%, #0a2040 100%);
+}
 .hero__canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.55;
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
 }
-
-/* ---- Light rays (sun rays through tinted glass) ---- */
-.hero__rays {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
+.hero__bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 20%, rgba(0,180,255,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 10% 80%, rgba(80,0,200,0.15) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 50% 50%, rgba(0,120,180,0.08) 0%, transparent 60%);
+  animation: meshShift 12s ease-in-out infinite alternate;
   pointer-events: none;
 }
-
-.hero__ray {
-  position: absolute;
-  top: -20%;
-  width: 3px;
-  height: 160%;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(232, 160, 0, 0.12) 20%,
-    rgba(232, 160, 0, 0.06) 60%,
-    transparent 100%
-  );
-  transform-origin: top center;
-  border-radius: 100px;
-  filter: blur(4px);
+@keyframes meshShift {
+  0%   { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 1;   transform: scale(1.05); }
 }
+
+.hero__rays { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.hero__ray  { position: absolute; top: -10%; height: 150%; transform-origin: top center; filter: blur(6px); border-radius: 100px; }
 
 .hero__ray--1 {
-  left: 15%;
-  width: 80px;
-  transform: rotate(-8deg);
-  animation: raySwing 9s ease-in-out infinite;
-  opacity: 0.7;
+  left: 60%; width: 120px;
+  background: linear-gradient(to bottom, rgba(0,200,255,0.22) 0%, rgba(0,120,255,0.10) 50%, transparent 100%);
+  transform: rotate(-6deg);
+  animation: raySwing 10s ease-in-out infinite;
 }
 .hero__ray--2 {
-  left: 35%;
-  width: 40px;
-  transform: rotate(3deg);
-  animation: raySwing 12s ease-in-out infinite reverse;
-  opacity: 0.5;
+  left: 72%; width: 50px;
+  background: linear-gradient(to bottom, rgba(120,0,255,0.18) 0%, rgba(80,0,200,0.08) 50%, transparent 100%);
+  transform: rotate(4deg);
+  animation: raySwing 14s ease-in-out infinite reverse 1s;
 }
 .hero__ray--3 {
-  left: 55%;
-  width: 100px;
-  transform: rotate(-5deg);
-  animation: raySwing 7s ease-in-out infinite 2s;
-  opacity: 0.6;
+  left: 80%; width: 200px;
+  background: linear-gradient(to bottom, rgba(0,255,200,0.12) 0%, rgba(0,180,120,0.06) 50%, transparent 100%);
+  transform: rotate(-3deg);
+  animation: raySwing 8s ease-in-out infinite 2s;
 }
 .hero__ray--4 {
-  left: 72%;
-  width: 50px;
-  transform: rotate(10deg);
-  animation: raySwing 11s ease-in-out infinite 1s reverse;
-  opacity: 0.4;
+  left: 55%; width: 30px;
+  background: linear-gradient(to bottom, rgba(255,200,0,0.15) 0%, rgba(232,160,0,0.06) 50%, transparent 100%);
+  transform: rotate(8deg);
+  animation: raySwing 12s ease-in-out infinite 3s reverse;
 }
 .hero__ray--5 {
-  left: 85%;
-  width: 30px;
-  transform: rotate(-12deg);
-  animation: raySwing 8s ease-in-out infinite 3s;
-  opacity: 0.5;
+  left: 88%; width: 80px;
+  background: linear-gradient(to bottom, rgba(0,160,255,0.16) 0%, transparent 60%);
+  transform: rotate(-10deg);
+  animation: raySwing 9s ease-in-out infinite 0.5s;
 }
-
 @keyframes raySwing {
-  0%   { transform: rotate(var(--r, -8deg)) translateX(0); opacity: 0.3; }
-  50%  { transform: rotate(calc(var(--r, -8deg) + 4deg)) translateX(8px); opacity: 0.9; }
-  100% { transform: rotate(var(--r, -8deg)) translateX(0); opacity: 0.3; }
+  0%   { opacity: 0.4; transform: rotate(-6deg) translateX(0); }
+  50%  { opacity: 1;   transform: rotate(-3deg) translateX(6px); }
+  100% { opacity: 0.4; transform: rotate(-6deg) translateX(0); }
 }
 
-/* ---- Tinted glass panes ---- */
-.hero__panes {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hero__pane {
-  position: absolute;
-  border-radius: 2px;
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-}
+.hero__panes { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.hero__pane  { position: absolute; border-radius: 2px; }
 
 .hero__pane--1 {
-  right: -5%;
-  top: 5%;
-  width: 28vw;
-  height: 90vh;
-  background: linear-gradient(
-    135deg,
-    rgba(232, 160, 0, 0.04) 0%,
-    rgba(20, 20, 30, 0.3) 40%,
-    rgba(232, 160, 0, 0.02) 100%
-  );
-  border-left: 1px solid rgba(232, 160, 0, 0.08);
-  border-top: 1px solid rgba(232, 160, 0, 0.05);
-  transform: skewX(-4deg);
-  animation: paneShimmer 8s ease-in-out infinite;
+  right: -4%; top: 0; width: 30vw; height: 100%;
+  background: linear-gradient(160deg, rgba(0,160,255,0.07) 0%, rgba(0,60,120,0.18) 50%, rgba(60,0,180,0.06) 100%);
+  border-left: 1px solid rgba(0,200,255,0.12);
+  transform: skewX(-3deg);
+  animation: paneGlow 9s ease-in-out infinite;
 }
-
 .hero__pane--2 {
-  right: 18%;
-  top: 0;
-  width: 8vw;
-  height: 100vh;
-  background: linear-gradient(
-    180deg,
-    rgba(232, 160, 0, 0.06) 0%,
-    transparent 50%,
-    rgba(232, 160, 0, 0.03) 100%
-  );
-  border-left: 1px solid rgba(232, 160, 0, 0.06);
-  transform: skewX(-2deg);
-  animation: paneShimmer 11s ease-in-out infinite 2s reverse;
+  right: 20%; top: 0; width: 6vw; height: 100%;
+  background: linear-gradient(180deg, rgba(80,0,255,0.07) 0%, transparent 50%, rgba(0,200,255,0.05) 100%);
+  border-left: 1px solid rgba(120,80,255,0.10);
+  transform: skewX(-1deg);
+  animation: paneGlow 13s ease-in-out infinite reverse 2s;
 }
-
 .hero__pane--3 {
-  right: 8%;
-  top: 10%;
-  width: 4vw;
-  height: 80vh;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(255, 200, 80, 0.05) 40%,
-    transparent 100%
-  );
-  border-right: 1px solid rgba(232, 160, 0, 0.1);
-  transform: skewX(2deg);
-  animation: paneShimmer 6s ease-in-out infinite 1s;
+  right: 10%; top: 0; width: 3vw; height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,255,200,0.06) 50%, transparent 100%);
+  border-right: 1px solid rgba(0,255,180,0.10);
+  animation: paneGlow 7s ease-in-out infinite 1s;
+}
+@keyframes paneGlow {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
 }
 
-@keyframes paneShimmer {
-  0%   { opacity: 0.4; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.4; }
-}
-
-/* ---- Horizontal scan line (like light moving across glass) ---- */
 .hero__bg::after {
   content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(232, 160, 0, 0.15) 30%,
-    rgba(232, 160, 0, 0.4) 50%,
-    rgba(232, 160, 0, 0.15) 70%,
-    transparent 100%
-  );
+  position: absolute; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,200,255,0.2) 25%, rgba(0,255,200,0.5) 50%, rgba(80,120,255,0.2) 75%, transparent 100%);
   filter: blur(3px);
-  animation: scanLine 6s ease-in-out infinite;
+  animation: scanLine 7s ease-in-out infinite;
   pointer-events: none;
 }
-
 @keyframes scanLine {
-  0%   { top: 10%; opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { top: 90%; opacity: 0; }
+  0%   { top: 5%;  opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { top: 95%; opacity: 0; }
+}
+
+.hero__glow--1 { background: radial-gradient(circle, rgba(0,160,255,0.16) 0%, transparent 70%) !important; }
+.hero__glow--2 { background: radial-gradient(circle, rgba(80,0,200,0.12) 0%, transparent 70%) !important; }
+.hero__grid {
+  background-image:
+    linear-gradient(rgba(0,180,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,255,0.05) 1px, transparent 1px) !important;
 }
 
 /* ============================================================
-   SERVICES — Animated Film / Tint Layer Backgrounds
+   TICKER
    ============================================================ */
+.ticker {
+  background: linear-gradient(90deg, #0077cc, #00aacc, #0055aa);
+  background-size: 200% 100%;
+  animation: tickerGrad 6s ease infinite;
+  position: relative; overflow: hidden;
+}
+@keyframes tickerGrad {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.ticker::before, .ticker::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 1; pointer-events: none;
+}
+.ticker::before { left: 0;  background: linear-gradient(to right, #0077cc, transparent); }
+.ticker::after  { right: 0; background: linear-gradient(to left,  #00aacc, transparent); }
+.ticker__track span { color: #fff; }
 
+/* ============================================================
+   SERVICES
+   ============================================================ */
 .services {
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #071422 0%, #060f1e 100%);
 }
-
-.services__bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Large translucent "film roll" rectangles */
-.services__film {
-  position: absolute;
-  border-radius: 4px;
-}
-
+.services__bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.services__film { position: absolute; border-radius: 4px; }
 .services__film--1 {
-  top: -10%;
-  right: -8%;
-  width: 45vw;
-  height: 120%;
-  background: linear-gradient(
-    160deg,
-    rgba(232, 160, 0, 0.025) 0%,
-    rgba(30, 30, 40, 0.4) 50%,
-    transparent 100%
-  );
-  border: 1px solid rgba(232, 160, 0, 0.04);
+  top: -10%; right: -8%; width: 50vw; height: 120%;
+  background: linear-gradient(160deg, rgba(0,160,255,0.04) 0%, rgba(0,40,100,0.25) 50%, transparent 100%);
+  border: 1px solid rgba(0,180,255,0.05);
   transform: rotate(3deg);
-  animation: filmFloat 14s ease-in-out infinite;
+  animation: filmFloat 16s ease-in-out infinite;
 }
-
 .services__film--2 {
-  bottom: -15%;
-  left: -5%;
-  width: 30vw;
-  height: 70%;
-  background: linear-gradient(
-    340deg,
-    transparent 0%,
-    rgba(255, 107, 0, 0.03) 50%,
-    rgba(232, 160, 0, 0.02) 100%
-  );
-  border: 1px solid rgba(255, 107, 0, 0.04);
-  transform: rotate(-5deg);
-  animation: filmFloat 18s ease-in-out infinite reverse 3s;
+  bottom: -10%; left: -5%; width: 35vw; height: 70%;
+  background: linear-gradient(340deg, transparent 0%, rgba(60,0,200,0.05) 50%, rgba(0,120,200,0.03) 100%);
+  border: 1px solid rgba(80,80,255,0.05);
+  transform: rotate(-4deg);
+  animation: filmFloat 20s ease-in-out infinite reverse 3s;
 }
-
 .services__film--3 {
-  top: 20%;
-  left: 30%;
-  width: 60vw;
-  height: 60%;
-  background: radial-gradient(
-    ellipse at 30% 50%,
-    rgba(232, 160, 0, 0.03) 0%,
-    transparent 60%
-  );
-  animation: filmFloat 22s ease-in-out infinite 6s;
+  top: 15%; left: 25%; width: 60vw; height: 70%;
+  background: radial-gradient(ellipse at 40% 50%, rgba(0,180,255,0.04) 0%, transparent 60%);
+  animation: filmFloat 24s ease-in-out infinite 6s;
 }
-
 @keyframes filmFloat {
-  0%   { transform: rotate(var(--rot, 3deg)) translateY(0); }
-  50%  { transform: rotate(calc(var(--rot, 3deg) + 1deg)) translateY(-15px); }
-  100% { transform: rotate(var(--rot, 3deg)) translateY(0); }
+  0%   { transform: rotate(3deg) translateY(0); }
+  50%  { transform: rotate(4deg) translateY(-12px); }
+  100% { transform: rotate(3deg) translateY(0); }
 }
-
-/* Moving shimmer line across services */
 .services__shimmer {
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 1px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(232, 160, 0, 0.2) 30%,
-    rgba(232, 160, 0, 0.5) 50%,
-    rgba(232, 160, 0, 0.2) 70%,
-    transparent 100%
-  );
+  position: absolute; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,200,255,0.3) 30%, rgba(0,255,200,0.6) 50%, rgba(80,120,255,0.3) 70%, transparent 100%);
   filter: blur(2px);
-  animation: shimmerSlide 8s ease-in-out infinite;
+  animation: shimmerSlide 9s ease-in-out infinite;
   pointer-events: none;
 }
-
 @keyframes shimmerSlide {
   0%   { left: -5%; opacity: 0; }
   5%   { opacity: 1; }
   95%  { opacity: 1; }
   100% { left: 105%; opacity: 0; }
 }
+.service-card:hover {
+  border-color: rgba(0,180,255,0.35) !important;
+  box-shadow: 0 0 40px rgba(0,120,255,0.15) !important;
+}
+.service-card::before {
+  background: linear-gradient(90deg, rgba(0,180,255,0.8), rgba(0,255,200,0.8)) !important;
+}
 
 /* ============================================================
-   ABOUT — Starfield Canvas (Starlight Headliner theme)
+   ABOUT
    ============================================================ */
-
 .about {
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #04101e 0%, #080d20 50%, #060f1c 100%);
 }
-
-.about__stars {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.7;
-}
+.about__stars { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.about__bg-text { opacity: 0.018 !important; }
 
 /* ============================================================
-   FILMS SECTION — Prismatic / Rainbow shimmer on bg
+   FILMS
    ============================================================ */
-
 .films {
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, #060e1c 0%, #071526 60%, #060d1a 100%);
 }
-
 .films::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 40% at 80% 50%, rgba(120, 80, 200, 0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 60% at 20% 80%, rgba(0, 160, 200, 0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 50% 20%, rgba(232, 160, 0, 0.04) 0%, transparent 60%);
-  animation: prismShift 12s ease-in-out infinite;
+    radial-gradient(ellipse 70% 50% at 85% 30%, rgba(0,120,255,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 15% 70%, rgba(60,0,200,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(0,200,180,0.05) 0%, transparent 55%);
+  animation: prismShift 14s ease-in-out infinite;
   pointer-events: none;
 }
-
 @keyframes prismShift {
   0%   { opacity: 0.5; transform: scale(1); }
-  33%  { opacity: 1;   transform: scale(1.03); }
-  66%  { opacity: 0.7; transform: scale(0.98); }
+  50%  { opacity: 1;   transform: scale(1.04); }
   100% { opacity: 0.5; transform: scale(1); }
 }
-
-/* Diagonal light bands (like light through window film) */
 .films::after {
   content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
+  position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
   background: repeating-linear-gradient(
-    55deg,
-    transparent 0px,
-    transparent 80px,
-    rgba(232, 160, 0, 0.012) 80px,
-    rgba(232, 160, 0, 0.012) 82px
+    58deg,
+    transparent 0px, transparent 90px,
+    rgba(0,180,255,0.018) 90px, rgba(0,180,255,0.018) 92px
   );
-  animation: diagonalDrift 20s linear infinite;
+  animation: diagonalDrift 18s linear infinite;
   pointer-events: none;
 }
-
 @keyframes diagonalDrift {
   from { transform: translateX(0); }
-  to   { transform: translateX(82px); }
+  to   { transform: translateX(92px); }
+}
+.film-card:hover {
+  border-color: rgba(0,180,255,0.30) !important;
+  box-shadow: 0 8px 32px rgba(0,80,200,0.20) !important;
 }
 
 /* ============================================================
-   REVIEWS — Animated particle glow bg
+   REVIEWS
    ============================================================ */
-
+.reviews {
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #040d1a 0%, #06122a 100%);
+}
+.reviews__bg { position: absolute; inset: 0; }
+.reviews__glow {
+  background: radial-gradient(ellipse 100% 80% at 50% 50%, rgba(0,120,255,0.08) 0%, rgba(80,0,200,0.05) 50%, transparent 70%) !important;
+  animation: auroraShift 10s ease-in-out infinite alternate;
+}
+@keyframes auroraShift {
+  0%   { transform: translate(-10%,0) scale(1);   opacity: 0.6; }
+  100% { transform: translate(10%,5%) scale(1.1); opacity: 1; }
+}
 .reviews::before {
   content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 100% 80% at 50% 50%,
-    rgba(232, 160, 0, 0.04) 0%,
-    transparent 70%
-  );
-  animation: reviewPulse 7s ease-in-out infinite;
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 120% 30% at 30% 30%, rgba(0,200,180,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 80%  20% at 70% 70%, rgba(80,0,255,0.06) 0%, transparent 60%);
+  animation: auroraShift 14s ease-in-out infinite alternate-reverse;
   pointer-events: none;
 }
-
-@keyframes reviewPulse {
-  0%, 100% { transform: scale(1);    opacity: 0.5; }
-  50%       { transform: scale(1.08); opacity: 1; }
-}
-
-/* Subtle star dots in reviews bg */
 .reviews::after {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image:
-    radial-gradient(1px 1px at 15% 25%, rgba(232,160,0,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 15%, rgba(232,160,0,0.2) 0%, transparent 100%),
-    radial-gradient(1px 1px at 45% 75%, rgba(232,160,0,0.25) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 55%, rgba(255,200,80,0.2) 0%, transparent 100%),
-    radial-gradient(1px 1px at 30% 60%, rgba(232,160,0,0.15) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 80%, rgba(232,160,0,0.2) 0%, transparent 100%),
-    radial-gradient(1px 1px at 10% 90%, rgba(255,200,80,0.15) 0%, transparent 100%),
-    radial-gradient(2px 2px at 60% 30%, rgba(232,160,0,0.15) 0%, transparent 100%);
+    radial-gradient(1px 1px at 10% 20%, rgba(0,200,255,0.5)   0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 10%, rgba(120,80,255,0.4)  0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 80%, rgba(0,255,200,0.4)   0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 45%, rgba(0,160,255,0.35)  0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 65%, rgba(80,80,255,0.3)   0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 75%, rgba(0,200,180,0.35)  0%, transparent 100%),
+    radial-gradient(2px 2px at 55% 25%, rgba(0,180,255,0.25)  0%, transparent 100%),
+    radial-gradient(1px 1px at 5%  90%, rgba(120,0,255,0.3)   0%, transparent 100%);
   pointer-events: none;
-  animation: starsTwinkle 4s ease-in-out infinite alternate;
+  animation: starsTwinkle 5s ease-in-out infinite alternate;
 }
-
 @keyframes starsTwinkle {
   from { opacity: 0.4; }
   to   { opacity: 1; }
 }
 
 /* ============================================================
-   CONTACT SECTION — Subtle grid + glow
+   BOOKING BANNER
    ============================================================ */
-
-.contact {
-  position: relative;
-  overflow: hidden;
+.booking-banner {
+  background: linear-gradient(135deg, #0066cc 0%, #0099cc 30%, #e8a000 65%, #ff6b00 100%) !important;
+  background-size: 300% 300% !important;
+  animation: bannerGradient 8s ease infinite !important;
+}
+@keyframes bannerGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.booking-banner__text h2 { color: #fff !important; }
+.booking-banner__text p  { color: rgba(255,255,255,0.8) !important; }
+.booking-banner .btn--accent {
+  background: rgba(255,255,255,0.15) !important;
+  color: #fff !important;
+  border: 1.5px solid rgba(255,255,255,0.4) !important;
 }
 
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, #060e1c 0%, #071422 100%);
+}
 .contact::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(232,160,0,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232,160,0,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(0,180,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,255,0.04) 1px, transparent 1px);
   background-size: 40px 40px;
   pointer-events: none;
   mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
@@ -415,68 +339,26 @@
 }
 
 /* ============================================================
-   BOOKING BANNER — animated gradient shift
+   FOOTER
    ============================================================ */
-
-.booking-banner {
-  background-size: 200% 200%;
-  background-image: linear-gradient(
-    135deg,
-    var(--clr-accent) 0%,
-    var(--clr-accent-2) 40%,
-    #ffb700 70%,
-    var(--clr-accent) 100%
-  );
-  animation: bannerGradient 6s ease infinite;
-}
-
-@keyframes bannerGradient {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.footer {
+  background: #030a14 !important;
+  border-top: 1px solid rgba(0,180,255,0.08) !important;
 }
 
 /* ============================================================
-   TICKER — enhanced with glow
+   SCROLLBAR
    ============================================================ */
-
-.ticker {
-  position: relative;
-  overflow: hidden;
-}
-
-.ticker::before,
-.ticker::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 80px;
-  z-index: 1;
-  pointer-events: none;
-}
-.ticker::before {
-  left: 0;
-  background: linear-gradient(to right, var(--clr-accent), transparent);
-}
-.ticker::after {
-  right: 0;
-  background: linear-gradient(to left, var(--clr-accent), transparent);
-}
+::-webkit-scrollbar-thumb { background: #0088cc !important; }
 
 /* ============================================================
-   REDUCE MOTION — respect user preference
+   REDUCE MOTION
    ============================================================ */
-
 @media (prefers-reduced-motion: reduce) {
-  .hero__ray,
-  .hero__pane,
-  .hero__bg::after,
-  .services__film,
-  .services__shimmer,
-  .films::before,
-  .films::after,
-  .reviews::before,
-  .booking-banner {
-    animation: none !important;
-  }
+  .hero__ray, .hero__pane,
+  .hero__bg::before, .hero__bg::after,
+  .services__film, .services__shimmer,
+  .films::before, .films::after,
+  .reviews__glow, .reviews::before,
+  .booking-banner, .ticker { animation: none !important; }
 }
