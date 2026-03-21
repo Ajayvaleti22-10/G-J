@@ -1,0 +1,21 @@
+{
+  "name": "G&J Window Tinting & Auto Restyling",
+  "short_name": "G&J Tinting",
+  "description": "Top Rated Tint Shop in Cedar Rapids, IA. Auto, Home, Commercial Window Tinting & Starlight Headliners.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0a0a0c",
+  "background_color": "#0a0a0c",
+  "display": "standalone",
+  "start_url": "/"
+}
