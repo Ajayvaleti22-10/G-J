@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO Meta Tags -->
+  <title>G&J Window Tinting & Auto Restyling | Cedar Rapids, IA</title>
+  <meta name="description" content="Top Rated Tint Shop in Cedar Rapids. Auto, Home, Commercial, Heavy Equipment & UTV Window Tint. Starlight Headliners. 130+ 5-Star Reviews. Appointment Only. Call (319) 310-9012." />
+  <meta name="keywords" content="window tinting cedar rapids, auto tint iowa, window film cedar rapids, starlight headliner, headliner replacement, G&J window tinting" />
+  <meta name="author" content="G&J Window Tinting & Auto Restyling" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://gjwindowtinting.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="G&J Window Tinting & Auto Restyling | Cedar Rapids, IA" />
+  <meta property="og:description" content="Top Rated Tint Shop in Cedar Rapids. 130+ 5-Star Reviews. Auto, Home, Commercial & more." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gjwindowtinting.com/" />
+
+  <!-- Security Headers via Meta -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://docs.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://docs.google.com https://www.google.com; connect-src 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <meta name="msapplication-TileColor" content="#0a0a0c" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Cache Control -->
+  <meta http-equiv="Cache-Control" content="public, max-age=86400" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- ======== LOADER ======== -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <div class="loader__logo">G<span>&</span>J</div>
+      <div class="loader__bar"><div class="loader__fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ======== CURSOR ======== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ======== HEADER / NAV ======== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#hero" class="header__logo">
+        <span class="logo-gj">G<em>&</em>J</span>
+        <span class="logo-text">Window Tinting</span>
+      </a>
+
+      <nav class="header__nav" id="nav">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#films">Films</a>
+        <a href="/gallery">Gallery</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#contact" class="header__cta btn btn--accent">Book Now</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#services" class="mobile-nav__link">Services</a>
+      <a href="#about" class="mobile-nav__link">About</a>
+      <a href="#films" class="mobile-nav__link">Films</a>
+      <a href="/gallery" class="mobile-nav__link">Gallery</a>
+      <a href="#reviews" class="mobile-nav__link">Reviews</a>
+      <a href="#contact" class="mobile-nav__link">Contact</a>
+      <a href="tel:3193109012" class="mobile-nav__link mobile-nav__phone">📞 (319) 310-9012</a>
+    </div>
+  </header>
+
+  <!-- ======== HERO ======== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <canvas id="heroCanvas" class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="hero__grid"></div>
+      <div class="hero__rays" aria-hidden="true">
+        <div class="hero__ray hero__ray--1"></div>
+        <div class="hero__ray hero__ray--2"></div>
+        <div class="hero__ray hero__ray--3"></div>
+        <div class="hero__ray hero__ray--4"></div>
+        <div class="hero__ray hero__ray--5"></div>
+      </div>
+      <div class="hero__panes" aria-hidden="true">
+        <div class="hero__pane hero__pane--1"></div>
+        <div class="hero__pane hero__pane--2"></div>
+        <div class="hero__pane hero__pane--3"></div>
+      </div>
+      <div class="hero__glow hero__glow--1"></div>
+      <div class="hero__glow hero__glow--2"></div>
+    </div>
+
+    <div class="hero__content">
+      <div class="hero__badge reveal">⭐ 130+ Five Star Reviews · Cedar Rapids, IA</div>
+      <h1 class="hero__title reveal reveal--delay-1">
+        <span class="hero__title-line">PRECISION</span>
+        <span class="hero__title-line hero__title-line--accent">WINDOW</span>
+        <span class="hero__title-line">TINTING</span>
+      </h1>
+      <p class="hero__sub reveal reveal--delay-2">Auto · Home · Commercial · Heavy Equipment · UTV</p>
+      <div class="hero__actions reveal reveal--delay-3">
+        <a href="#contact" class="btn btn--accent btn--lg">Get a Free Quote</a>
+        <a href="tel:3193109012" class="btn btn--ghost btn--lg">📞 Call Now</a>
+      </div>
+      <div class="hero__stats reveal reveal--delay-4">
+        <div class="hero__stat"><span>130+</span>5-Star Reviews</div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat"><span>100%</span>Recommend</div>
+        <div class="hero__stat-divider"></div>
+        <div class="hero__stat"><span>#1</span>In Cedar Rapids</div>
+      </div>
+    </div>
+
+    <div class="hero__scroll">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ======== TICKER ======== -->
+  <div class="ticker">
+    <div class="ticker__track">
+      <span>AUTO TINT</span><span class="ticker__dot">◆</span>
+      <span>HOME TINT</span><span class="ticker__dot">◆</span>
+      <span>COMMERCIAL TINT</span><span class="ticker__dot">◆</span>
+      <span>HEAVY EQUIPMENT</span><span class="ticker__dot">◆</span>
+      <span>UTV TINT</span><span class="ticker__dot">◆</span>
+      <span>STARLIGHT HEADLINERS</span><span class="ticker__dot">◆</span>
+      <span>HEADLINER REPLACEMENT</span><span class="ticker__dot">◆</span>
+      <span>KEPLER FILMS</span><span class="ticker__dot">◆</span>
+      <span>AUTO TINT</span><span class="ticker__dot">◆</span>
+      <span>HOME TINT</span><span class="ticker__dot">◆</span>
+      <span>COMMERCIAL TINT</span><span class="ticker__dot">◆</span>
+      <span>HEAVY EQUIPMENT</span><span class="ticker__dot">◆</span>
+      <span>UTV TINT</span><span class="ticker__dot">◆</span>
+      <span>STARLIGHT HEADLINERS</span><span class="ticker__dot">◆</span>
+      <span>HEADLINER REPLACEMENT</span><span class="ticker__dot">◆</span>
+      <span>KEPLER FILMS</span><span class="ticker__dot">◆</span>
+    </div>
+  </div>
+
+  <!-- ======== SERVICES ======== -->
+  <section class="services section" id="services">
+    <div class="services__bg" aria-hidden="true">
+      <div class="services__film services__film--1"></div>
+      <div class="services__film services__film--2"></div>
+      <div class="services__film services__film--3"></div>
+      <div class="services__shimmer"></div>
+    </div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">What We Do</span>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-sub">Professional installations for every application</p>
+      </div>
+
+      <div class="services__grid">
+
+        <div class="service-card reveal">
+          <div class="service-card__icon">🚗</div>
+          <h3>Auto Window Tint</h3>
+          <p>Professional automotive tinting for all vehicle types. Reduce heat, glare, and UV exposure while elevating your ride's look.</p>
+          <a href="#contact" class="service-card__link">Get Quote →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-1">
+          <div class="service-card__icon">🏠</div>
+          <h3>Home Window Tint</h3>
+          <p>Increase privacy, reduce energy costs, and protect your furniture from UV damage with architectural window film.</p>
+          <a href="#contact" class="service-card__link">Get Quote →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-2">
+          <div class="service-card__icon">🏢</div>
+          <h3>Commercial Tint</h3>
+          <p>Improve comfort and reduce cooling costs for your business. Custom solutions for storefronts, offices, and more.</p>
+          <a href="#contact" class="service-card__link">Get Quote →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-3">
+          <div class="service-card__icon">🚜</div>
+          <h3>Heavy Equipment</h3>
+          <p>Specialized window film for tractors, excavators, and heavy machinery. Reduce operator fatigue and heat buildup.</p>
+          <a href="#contact" class="service-card__link">Get Quote →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-1">
+          <div class="service-card__icon">🏍️</div>
+          <h3>UTV Window Tint</h3>
+          <p>Custom tinting for your UTV, side-by-side, and off-road vehicles. Durable film built to handle the elements.</p>
+          <a href="#contact" class="service-card__link">Get Quote →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-2">
+          <div class="service-card__icon">✨</div>
+          <h3>Starlight Headliners</h3>
+          <p>Transform your vehicle's ceiling into a stunning fiber optic starry night sky. The ultimate luxury interior upgrade.</p>
+          <a href="#contact" class="service-card__link">Get Quote →</a>
+        </div>
+
+        <div class="service-card reveal reveal--delay-3">
+          <div class="service-card__icon">💎</div>
+          <h3>Headliner Replacement</h3>
+          <p>Full headliner replacement with premium materials. Fix sagging, stained, or worn headliners to factory-fresh condition.</p>
+          <a href="#contact" class="service-card__link">Get Quote →</a>
+        </div>
+
+        <div class="service-card service-card--cta reveal reveal--delay-1">
+          <div class="service-card__icon">📅</div>
+          <h3>Appointment Only</h3>
+          <p>We're dedicated to giving every customer our full attention. Book your appointment today and experience the G&J difference.</p>
+          <a href="#contact" class="btn btn--accent">Book Now</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== ABOUT ======== -->
+  <section class="about section" id="about">
+    <canvas id="starCanvas" class="about__stars" aria-hidden="true"></canvas>
+    <div class="about__bg-text">TINTING</div>
+    <div class="container">
+      <div class="about__inner">
+        <div class="about__left reveal">
+          <span class="section-label">Who We Are</span>
+          <h2 class="section-title">Cedar Rapids'<br /><em>Top Rated</em><br />Tint Shop</h2>
+          <p>At G&J Window Tinting & Auto Restyling, we believe every window tells a story. Whether you're protecting your family from harmful UV rays, keeping your home cool, or giving your vehicle a sleek new look — we bring precision craftsmanship to every job.</p>
+          <p>With over 130 combined 5-star reviews and a 100% recommendation rate, we've built our reputation one satisfied customer at a time.</p>
+          <div class="about__badges">
+            <div class="about__badge">
+              <span class="about__badge-num">130+</span>
+              <span>Combined<br/>5-Star Reviews</span>
+            </div>
+            <div class="about__badge">
+              <span class="about__badge-num">100%</span>
+              <span>Recommendation<br/>Rate</span>
+            </div>
+            <div class="about__badge">
+              <span class="about__badge-num">#1</span>
+              <span>Tint Shop<br/>Cedar Rapids</span>
+            </div>
+          </div>
+          <a href="tel:3193109012" class="btn btn--accent">📞 (319) 310-9012</a>
+        </div>
+        <div class="about__right reveal reveal--delay-2">
+          <div class="about__card">
+            <div class="about__card-icon">📍</div>
+            <h4>Our Location</h4>
+            <p>427 20th Street NW<br/>Cedar Rapids, IA 52405</p>
+          </div>
+          <div class="about__card">
+            <div class="about__card-icon">🕐</div>
+            <h4>Hours</h4>
+            <p>Always Open<br/>By Appointment</p>
+          </div>
+          <div class="about__card">
+            <div class="about__card-icon">📞</div>
+            <h4>Contact</h4>
+            <p>(319) 310-9012<br/>gjwindowtintanddetail@gmail.com</p>
+          </div>
+          <div class="about__card about__card--accent">
+            <div class="about__card-icon">💬</div>
+            <h4>Message Us</h4>
+            <p>Quick responses on<br/>Facebook Messenger</p>
+            <a href="https://m.me/GJWindowTintingAutoRestyling" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">Message on Facebook</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== KEPLER FILMS ======== -->
+  <section class="films section" id="films">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Premium Products</span>
+        <h2 class="section-title">Kepler Architectural Films</h2>
+        <p class="section-sub">We install industry-leading Kepler window films for residential and commercial applications</p>
+      </div>
+
+      <div class="films__grid">
+
+        <div class="film-card reveal">
+          <div class="film-card__badge" style="background:#7c7c7c;">SILVER</div>
+          <h3>Chromosphere</h3>
+          <p class="film-card__type">Silver Window Film</p>
+          <ul>
+            <li>Superior quality performance</li>
+            <li>Huge energy savings</li>
+            <li>Superior heat reduction</li>
+            <li>Glare reduction</li>
+            <li>10 Year Warranty</li>
+          </ul>
+        </div>
+
+        <div class="film-card reveal reveal--delay-1">
+          <div class="film-card__badge" style="background:#1a1a1a;">BLACK OUT</div>
+          <h3>Orbit</h3>
+          <p class="film-card__type">Black Out Window Film</p>
+          <ul>
+            <li>Complete blackout</li>
+            <li>Zero visibility in or out</li>
+            <li>Mimics spandrel glass appearance</li>
+            <li>Opaque finish for total privacy</li>
+            <li>10 Year Warranty</li>
+          </ul>
+        </div>
+
+        <div class="film-card reveal reveal--delay-2">
+          <div class="film-card__badge" style="background:#6a3fa0;">DUAL REFLECT</div>
+          <h3>Ecliptic</h3>
+          <p class="film-card__type">Dual Reflective Window Film</p>
+          <ul>
+            <li>Dual reflective technology</li>
+            <li>Excellent night time vision</li>
+            <li>Energy savings</li>
+            <li>Glare reduction</li>
+            <li>Superior performance</li>
+          </ul>
+        </div>
+
+        <div class="film-card reveal reveal--delay-3">
+          <div class="film-card__badge" style="background:#c8a000;">CERAMIC</div>
+          <h3>Solstice</h3>
+          <p class="film-card__type">Ceramic Window Film</p>
+          <ul>
+            <li>Titanium nitride technology</li>
+            <li>Excellent heat reduction</li>
+            <li>Scratch resistant coating</li>
+            <li>Superior optical clarity</li>
+            <li>Durable upgraded finish</li>
+          </ul>
+        </div>
+
+        <div class="film-card reveal reveal--delay-1">
+          <div class="film-card__badge" style="background:#2a7a2a;">ONE-WAY</div>
+          <h3>Vortex</h3>
+          <p class="film-card__type">One-Way Reflective Film</p>
+          <ul>
+            <li>One-way privacy</li>
+            <li>See out, not in</li>
+            <li>Superior solar control</li>
+            <li>Energy efficient</li>
+            <li>10 Year Warranty</li>
+          </ul>
+        </div>
+
+        <div class="film-card film-card--quote reveal reveal--delay-2">
+          <div class="film-card__icon">🎯</div>
+          <h3>Not Sure Which Film?</h3>
+          <p>Our experts will help you choose the perfect film for your specific needs, budget, and desired outcome.</p>
+          <a href="#contact" class="btn btn--accent">Get Expert Advice</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== REVIEWS ======== -->
+  <section class="reviews section" id="reviews">
+    <div class="reviews__bg">
+      <div class="reviews__glow"></div>
+    </div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">What People Say</span>
+        <h2 class="section-title">130+ Five Star Reviews</h2>
+        <div class="reviews__stars">★★★★★</div>
+        <p class="section-sub">100% of customers recommend G&J Window Tinting</p>
+      </div>
+
+      <div class="reviews__grid">
+
+        <div class="review-card reveal">
+          <div class="review-card__stars">★★★★★</div>
+          <p>"Absolutely incredible work on my truck. The tint looks flawless and the starlight headliner blew my mind. These guys are true professionals."</p>
+          <div class="review-card__author">— Happy Customer</div>
+          <div class="review-card__source">Facebook Review</div>
+        </div>
+
+        <div class="review-card reveal reveal--delay-1">
+          <div class="review-card__stars">★★★★★</div>
+          <p>"Top rated for a reason. Had my home windows done and the energy savings are already noticeable. Amazing service from start to finish."</p>
+          <div class="review-card__author">— Satisfied Homeowner</div>
+          <div class="review-card__source">Facebook Review</div>
+        </div>
+
+        <div class="review-card reveal reveal--delay-2">
+          <div class="review-card__stars">★★★★★</div>
+          <p>"Best tint shop in Cedar Rapids, hands down. Quality work, fair prices, and they really take their time to do it right. Highly recommend!"</p>
+          <div class="review-card__author">— Verified Customer</div>
+          <div class="review-card__source">Facebook Review</div>
+        </div>
+
+      </div>
+
+      <div class="reviews__cta reveal">
+        <p>See all 130+ reviews on our Facebook page</p>
+        <a href="https://www.facebook.com/share/1D8xxvSvEb/" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">View on Facebook →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== BOOKING BANNER ======== -->
+  <section class="booking-banner reveal">
+    <div class="container">
+      <div class="booking-banner__inner">
+        <div class="booking-banner__text">
+          <h2>Ready to Transform Your Windows?</h2>
+          <p>Book online or call us — we're always open for appointments</p>
+        </div>
+        <div class="booking-banner__actions">
+          <a href="https://app.tintwiz.com/web/cs/anvk2jickwmayuk4" target="_blank" rel="noopener noreferrer" class="btn btn--accent btn--lg">Book Online</a>
+          <a href="tel:3193109012" class="btn btn--white btn--lg">📞 (319) 310-9012</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CONTACT ======== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title">Request a Quote</h2>
+        <p class="section-sub">Fill out the form below and we'll get back to you as soon as possible</p>
+      </div>
+
+      <div class="contact__inner">
+        <div class="contact__info reveal">
+          <h3>Contact Information</h3>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">📞</div>
+            <div>
+              <span>Phone</span>
+              <a href="tel:3193109012">(319) 310-9012</a>
+            </div>
+          </div>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">📧</div>
+            <div>
+              <span>Email</span>
+              <a href="mailto:gjwindowtintanddetail@gmail.com">gjwindowtintanddetail@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">📍</div>
+            <div>
+              <span>Address</span>
+              <a href="https://maps.google.com/?q=427+20th+Street+NW+Cedar+Rapids+IA+52405" target="_blank" rel="noopener noreferrer">
+                427 20th Street NW<br/>Cedar Rapids, IA 52405
+              </a>
+            </div>
+          </div>
+
+          <div class="contact__item">
+            <div class="contact__item-icon">🕐</div>
+            <div>
+              <span>Hours</span>
+              <p>Always Open — By Appointment</p>
+            </div>
+          </div>
+
+          <div class="contact__social">
+            <a href="https://www.facebook.com/share/1D8xxvSvEb/" target="_blank" rel="noopener noreferrer" class="contact__social-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+            <a href="https://m.me/GJWindowTintingAutoRestyling" target="_blank" rel="noopener noreferrer" class="contact__social-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.373 0 0 4.974 0 11.111c0 3.498 1.744 6.614 4.469 8.654V24l4.088-2.242c1.092.3 2.246.464 3.443.464 6.627 0 12-4.975 12-11.111C24 4.974 18.627 0 12 0zm1.191 14.963l-3.055-3.26-5.963 3.26L10.732 8l3.131 3.259L19.752 8l-6.561 6.963z"/></svg>
+              Messenger
+            </a>
+          </div>
+        </div>
+
+        <!-- Google Form Embed -->
+        <div class="contact__form reveal reveal--delay-2">
+          <div class="form-wrapper">
+            <div class="form-placeholder" id="formPlaceholder">
+              <div class="form-placeholder__icon">📋</div>
+              <h3>Quote Request Form</h3>
+              <p>Your Google Form will appear here once you provide the embed URL.</p>
+              <div class="form-placeholder__code">
+                <code><!-- Replace GOOGLE_FORM_ID in js/main.js --></code>
+              </div>
+              <p class="form-placeholder__note">See <strong>js/main.js</strong> → <code>GOOGLE_FORM_ID</code> to activate</p>
+            </div>
+            <!-- Google Form iframe - will be injected by JS once ID is set -->
+            <iframe
+              id="googleFormFrame"
+              src="about:blank"
+              width="100%"
+              height="650"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              title="G&J Window Tinting Quote Request Form"
+              loading="lazy"
+              style="display:none; border-radius: 8px;"
+            >Loading form…</iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== MAP ======== -->
+  <section class="map-section">
+    <div class="map-section__label">
+      <span>📍 Find Us in Cedar Rapids</span>
+    </div>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2967.948!2d-91.685!3d42.000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s427+20th+St+NW%2C+Cedar+Rapids%2C+IA+52405!5e0!3m2!1sen!2sus!4v1"
+      width="100%"
+      height="380"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="G&J Window Tinting Location Map"
+    ></iframe>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="logo-gj footer__logo">G<em>&</em>J</span>
+          <p>G&J Window Tinting & Auto Restyling</p>
+          <p>Cedar Rapids, IA's #1 Tint Shop</p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Services</h4>
+          <a href="#services">Auto Window Tint</a>
+          <a href="#services">Home Window Tint</a>
+          <a href="#services">Commercial Tint</a>
+          <a href="#services">Heavy Equipment</a>
+          <a href="#services">UTV Tint</a>
+          <a href="#services">Starlight Headliners</a>
+          <a href="#services">Headliner Replacement</a>
+        </div>
+
+        <div class="footer__links">
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#films">Kepler Films</a>
+          <a href="/gallery">Gallery</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+          <a href="https://app.tintwiz.com/web/cs/anvk2jickwmayuk4" target="_blank" rel="noopener noreferrer">Book Appointment</a>
+        </div>
+
+        <div class="footer__contact">
+          <h4>Contact</h4>
+          <a href="tel:3193109012">📞 (319) 310-9012</a>
+          <a href="mailto:gjwindowtintanddetail@gmail.com">📧 gjwindowtintanddetail@gmail.com</a>
+          <a href="https://maps.google.com/?q=427+20th+Street+NW+Cedar+Rapids+IA+52405" target="_blank" rel="noopener noreferrer">📍 427 20th Street NW, Cedar Rapids, IA 52405</a>
+          <div class="footer__social">
+            <a href="https://www.facebook.com/share/1D8xxvSvEb/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© <span id="year"></span> G&J Window Tinting & Auto Restyling. All rights reserved.</p>
+        <p>Built with ❤️ in Cedar Rapids, IA</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

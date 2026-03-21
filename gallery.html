@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- SEO -->
+  <title>Gallery | G&J Window Tinting & Auto Restyling | Cedar Rapids, IA</title>
+  <meta name="description" content="See our work — auto tinting, home window film, commercial tinting, starlight headliners and more. G&J Window Tinting Cedar Rapids, IA." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://gjwindowtinting.com/gallery" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Gallery | G&J Window Tinting & Auto Restyling" />
+  <meta property="og:description" content="Photos and videos of our work in Cedar Rapids, IA." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gjwindowtinting.com/gallery" />
+
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: blob:; media-src 'self' blob:; connect-src 'self';" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0a0a0c" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/animations.css" />
+  <link rel="stylesheet" href="/css/gallery.css" />
+</head>
+<body>
+
+  <!-- ======== CURSOR ======== -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ======== HEADER ======== -->
+  <header class="header scrolled" id="header">
+    <div class="header__inner">
+      <a href="/" class="header__logo">
+        <span class="logo-gj">G<em>&</em>J</span>
+        <span class="logo-text">Window Tinting</span>
+      </a>
+
+      <nav class="header__nav" id="nav">
+        <a href="/#services">Services</a>
+        <a href="/#about">About</a>
+        <a href="/#films">Films</a>
+        <a href="/gallery" class="active">Gallery</a>
+        <a href="/#reviews">Reviews</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+
+      <a href="/#contact" class="header__cta btn btn--accent">Book Now</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="/#services" class="mobile-nav__link">Services</a>
+      <a href="/#about" class="mobile-nav__link">About</a>
+      <a href="/#films" class="mobile-nav__link">Films</a>
+      <a href="/gallery" class="mobile-nav__link" style="color:var(--clr-accent)">Gallery</a>
+      <a href="/#reviews" class="mobile-nav__link">Reviews</a>
+      <a href="/#contact" class="mobile-nav__link">Contact</a>
+      <a href="tel:3193109012" class="mobile-nav__link mobile-nav__phone">📞 (319) 310-9012</a>
+    </div>
+  </header>
+
+  <!-- ======== GALLERY HERO ======== -->
+  <section class="gallery-hero">
+    <div class="gallery-hero__bg">
+      <div class="hero__grid"></div>
+      <div class="gallery-hero__glow"></div>
+    </div>
+    <div class="container">
+      <div class="gallery-hero__content">
+        <span class="section-label">Our Portfolio</span>
+        <h1 class="gallery-hero__title">Our Work<br/><em>Speaks</em> For Itself</h1>
+        <p>Photos and videos of real jobs — auto tints, home film, starlight headliners, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FILTERS ======== -->
+  <div class="gallery-filters" id="galleryFilters">
+    <div class="container">
+      <div class="gallery-filters__inner">
+        <button class="filter-btn active" data-filter="all">All Work</button>
+        <button class="filter-btn" data-filter="auto">Auto Tint</button>
+        <button class="filter-btn" data-filter="home">Home Tint</button>
+        <button class="filter-btn" data-filter="commercial">Commercial</button>
+        <button class="filter-btn" data-filter="headliner">Headliners</button>
+        <button class="filter-btn" data-filter="utv">UTV / Equipment</button>
+        <button class="filter-btn" data-filter="video">Videos</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======== GALLERY GRID ======== -->
+  <section class="gallery-section">
+    <div class="container">
+
+      <!-- Upload notice banner — remove this block once you add real photos -->
+      <div class="gallery-notice" id="galleryNotice">
+        <div class="gallery-notice__icon">📸</div>
+        <div>
+          <strong>Photos & Videos Coming Soon</strong>
+          <p>To add your work: place image files in <code>images/gallery/</code> and video files in <code>videos/gallery/</code>, then update the items list in <code>js/gallery.js</code>. Full instructions in <code>README.md</code>.</p>
+        </div>
+        <button class="gallery-notice__close" id="noticeClose" aria-label="Dismiss">✕</button>
+      </div>
+
+      <!-- Grid — populated by gallery.js -->
+      <div class="gallery-grid" id="galleryGrid">
+
+        <!-- PLACEHOLDER CARDS — replace with real items in js/gallery.js -->
+        <div class="gallery-item" data-category="auto" data-type="photo">
+          <div class="gallery-item__inner">
+            <div class="gallery-placeholder">
+              <span class="gallery-placeholder__icon">🚗</span>
+              <span>Auto Tint Photo</span>
+            </div>
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__label">Auto Tint</span>
+              <span class="gallery-item__zoom">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item gallery-item--wide" data-category="auto" data-type="photo">
+          <div class="gallery-item__inner">
+            <div class="gallery-placeholder">
+              <span class="gallery-placeholder__icon">🚗</span>
+              <span>Auto Tint — Before &amp; After</span>
+            </div>
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__label">Auto Tint</span>
+              <span class="gallery-item__zoom">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="headliner" data-type="photo">
+          <div class="gallery-item__inner">
+            <div class="gallery-placeholder">
+              <span class="gallery-placeholder__icon">✨</span>
+              <span>Starlight Headliner</span>
+            </div>
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__label">Starlight Headliner</span>
+              <span class="gallery-item__zoom">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="headliner" data-type="video">
+          <div class="gallery-item__inner">
+            <div class="gallery-placeholder gallery-placeholder--video">
+              <span class="gallery-placeholder__icon">▶</span>
+              <span>Starlight Headliner Video</span>
+            </div>
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__label">Video</span>
+              <span class="gallery-item__zoom">▶</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="home" data-type="photo">
+          <div class="gallery-item__inner">
+            <div class="gallery-placeholder">
+              <span class="gallery-placeholder__icon">🏠</span>
+              <span>Home Window Tint</span>
+            </div>
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__label">Home Tint</span>
+              <span class="gallery-item__zoom">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="commercial" data-type="photo">
+          <div class="gallery-item__inner">
+            <div class="gallery-placeholder">
+              <span class="gallery-placeholder__icon">🏢</span>
+              <span>Commercial Tint</span>
+            </div>
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__label">Commercial</span>
+              <span class="gallery-item__zoom">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="utv" data-type="photo">
+          <div class="gallery-item__inner">
+            <div class="gallery-placeholder">
+              <span class="gallery-placeholder__icon">🏍️</span>
+              <span>UTV / Equipment Tint</span>
+            </div>
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__label">UTV / Equipment</span>
+              <span class="gallery-item__zoom">🔍</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="auto" data-type="video">
+          <div class="gallery-item__inner">
+            <div class="gallery-placeholder gallery-placeholder--video">
+              <span class="gallery-placeholder__icon">▶</span>
+              <span>Auto Tint Video</span>
+            </div>
+            <div class="gallery-item__overlay">
+              <span class="gallery-item__label">Video</span>
+              <span class="gallery-item__zoom">▶</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /gallery-grid -->
+
+      <!-- Empty state (shown when filter returns nothing) -->
+      <div class="gallery-empty" id="galleryEmpty" style="display:none;">
+        <div class="gallery-empty__icon">📂</div>
+        <h3>No items in this category yet</h3>
+        <p>Check back soon — we're always adding new work!</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======== CTA ======== -->
+  <section class="gallery-cta">
+    <div class="container">
+      <div class="gallery-cta__inner reveal">
+        <h2>Like What You See?</h2>
+        <p>Get your free quote today — appointment only, Cedar Rapids, IA</p>
+        <div class="gallery-cta__btns">
+          <a href="/#contact" class="btn btn--accent btn--lg">Get a Free Quote</a>
+          <a href="tel:3193109012" class="btn btn--ghost btn--lg">📞 (319) 310-9012</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER (same as main) ======== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <span class="logo-gj footer__logo">G<em>&</em>J</span>
+          <p>G&J Window Tinting & Auto Restyling</p>
+          <p>Cedar Rapids, IA's #1 Tint Shop</p>
+        </div>
+        <div class="footer__links">
+          <h4>Services</h4>
+          <a href="/#services">Auto Window Tint</a>
+          <a href="/#services">Home Window Tint</a>
+          <a href="/#services">Commercial Tint</a>
+          <a href="/#services">Heavy Equipment</a>
+          <a href="/#services">UTV Tint</a>
+          <a href="/#services">Starlight Headliners</a>
+          <a href="/#services">Headliner Replacement</a>
+        </div>
+        <div class="footer__links">
+          <h4>Company</h4>
+          <a href="/#about">About Us</a>
+          <a href="/#films">Kepler Films</a>
+          <a href="/gallery">Gallery</a>
+          <a href="/#reviews">Reviews</a>
+          <a href="/#contact">Contact</a>
+          <a href="https://app.tintwiz.com/web/cs/anvk2jickwmayuk4" target="_blank" rel="noopener noreferrer">Book Appointment</a>
+        </div>
+        <div class="footer__contact">
+          <h4>Contact</h4>
+          <a href="tel:3193109012">📞 (319) 310-9012</a>
+          <a href="mailto:gjwindowtintanddetail@gmail.com">📧 gjwindowtintanddetail@gmail.com</a>
+          <a href="https://maps.google.com/?q=427+20th+Street+NW+Cedar+Rapids+IA+52405" target="_blank" rel="noopener noreferrer">📍 427 20th Street NW, Cedar Rapids, IA 52405</a>
+          <div class="footer__social">
+            <a href="https://www.facebook.com/share/1D8xxvSvEb/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span class="footer-year"></span> G&J Window Tinting & Auto Restyling. All rights reserved.</p>
+        <p>Built with ❤️ in Cedar Rapids, IA</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======== LIGHTBOX ======== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Media viewer" style="display:none;">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">✕</button>
+    <button class="lightbox__prev" id="lightboxPrev" aria-label="Previous">‹</button>
+    <button class="lightbox__next" id="lightboxNext" aria-label="Next">›</button>
+    <div class="lightbox__content" id="lightboxContent"></div>
+    <div class="lightbox__caption" id="lightboxCaption"></div>
+    <div class="lightbox__counter" id="lightboxCounter"></div>
+  </div>
+  <div class="lightbox__backdrop" id="lightboxBackdrop" style="display:none;"></div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="/js/main.js"></script>
+  <script src="/js/gallery.js"></script>
+</body>
+</html>
