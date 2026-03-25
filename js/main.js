@@ -1,22 +1,7 @@
 /**
  * G&J Window Tinting & Auto Restyling
- * Main JavaScript — Interactions, Animations, Security, Google Form
- *
- * ============================================================
- * GOOGLE FORM SETUP INSTRUCTIONS:
- * 1. Go to forms.google.com and create your quote request form
- * 2. Add fields: Name, Phone, Email, Service Type, Vehicle/Property Info, Message
- * 3. Click ⋮ menu → "Get pre-filled link" or just "Send" → Embed tab
- * 4. Copy the Form ID from the URL:
- *    https://docs.google.com/forms/d/e/XXXXXXXXXXXXXXXX/viewform
- *                                      ^^^^^^^^^^^^^^^^ this part
- * 5. Paste the full Form ID string into GOOGLE_FORM_ID below
- * ============================================================
+ * Main JavaScript — Interactions, animations, and progressive enhancements
  */
-
-/* ---- CONFIGURE THIS ---- */
-const GOOGLE_FORM_ID = ''; // <-- Paste your Google Form ID here
-/* ------------------------ */
 
 (function () {
   'use strict';
@@ -248,59 +233,6 @@ const GOOGLE_FORM_ID = ''; // <-- Paste your Google Form ID here
   const yearEl = document.getElementById('year');
   if (yearEl) {
     yearEl.textContent = new Date().getFullYear();
-  }
-
-  /* ============================================================
-     GOOGLE FORM — Dynamic embed
-     ============================================================ */
-  function loadGoogleForm() {
-    const formId = GOOGLE_FORM_ID.trim();
-    const placeholder = document.getElementById('formPlaceholder');
-    const iframe = document.getElementById('googleFormFrame');
-
-    if (!formId) {
-      // Show setup placeholder — form ID not yet configured
-      if (placeholder) placeholder.style.display = 'flex';
-      if (iframe) iframe.style.display = 'none';
-      return;
-    }
-
-    // Validate format to prevent injection (only alphanumeric, hyphens, underscores)
-    const safeIdPattern = /^[A-Za-z0-9_-]+$/;
-    if (!safeIdPattern.test(formId)) {
-      console.error('GJ Site: Invalid Google Form ID format. Only alphanumeric, hyphens and underscores allowed.');
-      return;
-    }
-
-    const formUrl = 'https://docs.google.com/forms/d/e/' + encodeURIComponent(formId) + '/viewform?embedded=true';
-
-    if (placeholder) placeholder.style.display = 'none';
-
-    if (iframe) {
-      iframe.src = formUrl;
-      iframe.style.display = 'block';
-
-      iframe.addEventListener('load', function () {
-        iframe.style.opacity = '1';
-      });
-    }
-  }
-
-  // Load form when contact section is in view (lazy load)
-  const contactSection = document.getElementById('contact');
-  if (contactSection && 'IntersectionObserver' in window) {
-    const formObserver = new IntersectionObserver(
-      function (entries) {
-        if (entries[0].isIntersecting) {
-          loadGoogleForm();
-          formObserver.unobserve(contactSection);
-        }
-      },
-      { threshold: 0.1 }
-    );
-    formObserver.observe(contactSection);
-  } else {
-    loadGoogleForm();
   }
 
   /* ============================================================

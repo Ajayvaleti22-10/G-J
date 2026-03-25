@@ -12,6 +12,7 @@ const PRECACHE_ASSETS = [
   '/index.html',
   '/css/style.css',
   '/js/main.js',
+  '/images/logo-gj.png',
 ];
 
 // External resources to cache when first fetched
@@ -70,7 +71,7 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  // Google Forms & Maps — network only (dynamic content)
+  // Google Maps & other Google embeds — network only (dynamic content)
   if (url.hostname.includes('google.com') || url.hostname.includes('googleapis.com')) {
     event.respondWith(fetch(event.request).catch(function () {
       return new Response('Offline', { status: 503 });
