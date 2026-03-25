@@ -73,7 +73,7 @@
       "destination": "/gallery.html"
     },
     {
-      "source": "/((?!images|videos|css|js|favicon|apple-touch|android-chrome|site.webmanifest|robots.txt|sitemap.xml|sw.js).*)",
+      "source": "/((?!images|videos|css|js|site.webmanifest|robots.txt|sitemap.xml|sw.js).*)",
       "destination": "/index.html"
     }
   ]
