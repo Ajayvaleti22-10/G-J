@@ -65,12 +65,12 @@
       el.addEventListener('mouseenter', function () {
         if (cursor) cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
         if (follower) follower.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        if (follower) follower.style.borderColor = 'rgba(232,160,0,0.8)';
+        if (follower) follower.style.borderColor = 'rgba(212,175,55,0.8)';
       });
       el.addEventListener('mouseleave', function () {
         if (cursor) cursor.style.transform = 'translate(-50%, -50%) scale(1)';
         if (follower) follower.style.transform = 'translate(-50%, -50%) scale(1)';
-        if (follower) follower.style.borderColor = 'rgba(232,160,0,0.5)';
+        if (follower) follower.style.borderColor = 'rgba(212,175,55,0.5)';
       });
     });
   } else {

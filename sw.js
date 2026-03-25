@@ -3,7 +3,7 @@
  * Handles caching for performance & offline resilience
  */
 
-const CACHE_NAME = 'gj-tinting-v1';
+const CACHE_NAME = 'gj-tinting-v3';
 const CACHE_VERSION = 1;
 
 // Assets to cache immediately on install

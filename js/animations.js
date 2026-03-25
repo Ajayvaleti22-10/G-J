@@ -1,20 +1,19 @@
 /**
  * G&J Window Tinting — Canvas Animations
- * Blue/teal light particles through tinted glass + starfield
+ * Champagne gold, crimson & silver highlights (brand-aligned)
  */
 (function () {
   'use strict';
 
   function rand(a, b) { return Math.random() * (b - a) + a; }
 
-  /* colour palette — blues, teals, purples, gold accent */
   const COLOURS = [
-    { r: 0,   g: 200, b: 255 }, // cyan
-    { r: 0,   g: 160, b: 255 }, // sky blue
-    { r: 80,  g: 0,   b: 255 }, // violet
-    { r: 0,   g: 255, b: 200 }, // teal
-    { r: 120, g: 80,  b: 255 }, // purple
-    { r: 232, g: 160, b: 0   }, // gold accent
+    { r: 212, g: 175, b: 55  }, // crown gold
+    { r: 230, g: 200, b: 105 }, // light gold
+    { r: 196, g: 30,  b: 58  }, // crimson
+    { r: 120, g: 38,  b: 58  }, // wine
+    { r: 195, g: 188, b: 205 }, // silver mist
+    { r: 255, g: 242, b: 225 }, // warm highlight
   ];
 
   function pickColour() { return COLOURS[Math.floor(Math.random() * COLOURS.length)]; }
@@ -138,8 +137,8 @@
         speed: rand(0.003, 0.012),
         phase: rand(0, Math.PI * 2),
         col: Math.random() > 0.5
-          ? { r: 0, g: 200, b: 255 }   // cyan star
-          : { r: 180, g: 160, b: 255 }, // lavender star
+          ? { r: 212, g: 175, b: 55 }
+          : { r: 205, g: 198, b: 215 },
       };
     }
 
@@ -190,9 +189,9 @@
         const sy = ey - Math.sin(ss.angle) * Math.min(ss.len * 0.4, ss.len * ss.progress);
 
         const g = ctx.createLinearGradient(sx, sy, ex, ey);
-        g.addColorStop(0,   'rgba(0,200,255,0)');
-        g.addColorStop(0.6, `rgba(100,220,255,${ss.alpha * 0.7})`);
-        g.addColorStop(1,   `rgba(255,255,255,${ss.alpha})`);
+        g.addColorStop(0,   'rgba(212,175,55,0)');
+        g.addColorStop(0.6, `rgba(232,200,120,${ss.alpha * 0.7})`);
+        g.addColorStop(1,   `rgba(255,248,235,${ss.alpha})`);
         ctx.save();
         ctx.strokeStyle = g;
         ctx.lineWidth = 1.5;
