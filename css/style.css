@@ -254,29 +254,23 @@ button:hover ~ .cursor { transform: translate(-50%, -50%) scale(2); }
   gap: 2rem;
 }
 .header__logo {
-  display: flex; align-items: center; gap: 0.75rem;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
+  line-height: 0;
 }
 .header__logo-img {
-  height: 44px;
+  height: 45px;
   width: auto;
   display: block;
+  flex-shrink: 0;
   object-fit: contain;
 }
 @media (min-width: 640px) {
-  .header__logo-img { height: 52px; }
+  .header__logo-img {
+    height: 60px;
+  }
 }
-.logo-text {
-  font-family: var(--font-cond);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--clr-gray);
-  line-height: 1.2;
-  display: none;
-}
-@media (min-width: 640px) { .logo-text { display: block; } }
 
 .header__nav {
   display: flex; gap: 2rem;
@@ -1020,14 +1014,11 @@ button:hover ~ .cursor { transform: translate(-50%, -50%) scale(2); }
 @media (max-width: 500px) { .footer__inner { grid-template-columns: 1fr; } }
 
 .footer__logo-img {
-  height: 52px;
+  height: 50px;
   width: auto;
   display: block;
   margin-bottom: 0.65rem;
   object-fit: contain;
-}
-@media (min-width: 640px) {
-  .footer__logo-img { height: 60px; }
 }
 .footer__brand p { color: var(--clr-gray); font-size: 0.9rem; line-height: 1.6; }
 

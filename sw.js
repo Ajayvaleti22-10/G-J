@@ -3,7 +3,7 @@
  * Handles caching for performance & offline resilience
  */
 
-const CACHE_NAME = 'gj-tinting-v3';
+const CACHE_NAME = 'gj-tinting-v4';
 const CACHE_VERSION = 1;
 
 // Assets to cache immediately on install
@@ -12,7 +12,7 @@ const PRECACHE_ASSETS = [
   '/index.html',
   '/css/style.css',
   '/js/main.js',
-  '/images/logo-gj.png',
+  '/images/logo.png',
 ];
 
 // External resources to cache when first fetched
