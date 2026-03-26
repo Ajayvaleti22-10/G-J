@@ -3,7 +3,7 @@
  * Handles caching for performance & offline resilience
  */
 
-const CACHE_NAME = 'gj-tinting-v6';
+const CACHE_NAME = 'gj-tinting-v7';
 const CACHE_VERSION = 1;
 
 // Assets to cache immediately on install
@@ -79,8 +79,32 @@ self.addEventListener('fetch', function (event) {
     return;
   }
 
-  // Site assets — cache first, then network, update cache in background
+  // Site assets
   if (url.hostname === self.location.hostname) {
+    const path = url.pathname;
+
+    // CSS/JS: network-first so a bad/stale cached stylesheet (e.g. HTML from a bad URL)
+    // cannot permanently hide layout fixes. Offline: fall back to cache.
+    if (path.startsWith('/css/') || path.startsWith('/js/')) {
+      event.respondWith(
+        fetch(event.request)
+          .then(function (response) {
+            if (response && response.status === 200) {
+              const clone = response.clone();
+              caches.open(CACHE_NAME).then(function (cache) {
+                cache.put(event.request, clone);
+              });
+            }
+            return response;
+          })
+          .catch(function () {
+            return caches.match(event.request);
+          })
+      );
+      return;
+    }
+
+    // Other same-origin (HTML, images, etc.) — cache first, refresh in background
     event.respondWith(
       caches.match(event.request).then(function (cached) {
         const networkFetch = fetch(event.request).then(function (response) {
@@ -92,7 +116,6 @@ self.addEventListener('fetch', function (event) {
           }
           return response;
         }).catch(function () {
-          // Return offline fallback for navigation requests
           if (event.request.mode === 'navigate') {
             return caches.match('/index.html');
           }
