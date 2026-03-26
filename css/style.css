@@ -909,7 +909,6 @@ button:hover ~ .cursor { transform: translate(-50%, -50%) scale(2); }
 }
 .contact__social-btn:hover { border-color: var(--clr-accent); color: var(--clr-accent); }
 
-.contact__form { }
 .form-wrapper {
   background: var(--clr-bg-3);
   border: 1px solid var(--clr-border);
