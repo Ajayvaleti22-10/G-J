@@ -3,7 +3,7 @@
  * Handles caching for performance & offline resilience
  */
 
-const CACHE_NAME = 'gj-tinting-v9';
+const CACHE_NAME = 'gj-tinting-v10';
 const CACHE_VERSION = 1;
 
 // Assets to cache immediately on install
@@ -104,7 +104,30 @@ self.addEventListener('fetch', function (event) {
       return;
     }
 
-    // Other same-origin (HTML, images, etc.) — cache first, refresh in background
+    // HTML navigations — network-first so updated CSP/security headers always apply.
+    // (Cache-first HTML can keep stale Content-Security-Policy and break third-party widgets.)
+    if (event.request.mode === 'navigate') {
+      event.respondWith(
+        fetch(event.request)
+          .then(function (response) {
+            if (response && response.status === 200) {
+              const clone = response.clone();
+              caches.open(CACHE_NAME).then(function (cache) {
+                cache.put(event.request, clone);
+              });
+            }
+            return response;
+          })
+          .catch(function () {
+            return caches.match(event.request).then(function (cached) {
+              return cached || caches.match('/index.html');
+            });
+          })
+      );
+      return;
+    }
+
+    // Other same-origin (images, etc.) — cache first, refresh in background
     event.respondWith(
       caches.match(event.request).then(function (cached) {
         const networkFetch = fetch(event.request).then(function (response) {
@@ -115,10 +138,6 @@ self.addEventListener('fetch', function (event) {
             });
           }
           return response;
-        }).catch(function () {
-          if (event.request.mode === 'navigate') {
-            return caches.match('/index.html');
-          }
         });
 
         return cached || networkFetch;
