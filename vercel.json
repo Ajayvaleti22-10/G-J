@@ -64,6 +64,11 @@
       "source": "/gallery.html",
       "destination": "/gallery",
       "permanent": true
+    },
+    {
+      "source": "/reviews.html",
+      "destination": "/reviews",
+      "permanent": true
     }
   ],
 
@@ -71,6 +76,10 @@
     {
       "source": "/gallery",
       "destination": "/gallery.html"
+    },
+    {
+      "source": "/reviews",
+      "destination": "/reviews.html"
     },
     {
       "source": "/((?!images|videos|css|js|site.webmanifest|robots.txt|sitemap.xml|sw.js).*)",
