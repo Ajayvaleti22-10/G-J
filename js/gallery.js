@@ -13,7 +13,7 @@
  * 2. Add each file to the GALLERY_ITEMS array below.
  *    Each item needs:
  *      - type:     'photo' or 'video'
- *      - category: 'auto' | 'home' | 'commercial' | 'headliner' | 'utv' | 'video'
+ *      - category: 'auto' | 'home' | 'commercial' | 'headliner' | 'utv'
  *      - src:      path to your file  e.g. 'images/gallery/truck-tint-1.jpg'
  *      - thumb:    (optional) path to a smaller thumbnail — if blank, src is used
  *      - caption:  text shown in lightbox
@@ -42,18 +42,31 @@
  */
 
 const GALLERY_ITEMS = [
-  // ── Paste your items here ──────────────────────────────
-  // Example (delete these and add your real files):
-  //
-  // {
-  //   type: 'photo',
-  //   category: 'auto',
-  //   src: 'images/gallery/your-photo.jpg',
-  //   caption: 'Your caption here',
-  //   wide: false
-  // },
-  //
-  // ──────────────────────────────────────────────────────
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.01 (1).jpeg', caption: 'Ceramic IR 2% Shade', feature: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.01 (2).jpeg', caption: 'Ceramic IR 2% - Side Profile', wide: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.01.jpeg', caption: 'Ceramic IR 5% Shade', tall: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (1).jpeg', caption: 'Ceramic IR 5% - Exterior View' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (2).jpeg', caption: 'Ceramic IR 15% Shade' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (3).jpeg', caption: 'Ceramic IR 15% - Angle View', wide: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (4).jpeg', caption: 'Ceramic IR 20% Shade' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (5).jpeg', caption: 'Ceramic IR 20% - Cabin View' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (6).jpeg', caption: 'Ceramic IR 35% Shade', tall: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (7).jpeg', caption: 'Ceramic IR 35% - Natural Light' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (8).jpeg', caption: 'Ceramic IR 50% Shade', wide: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02 (9).jpeg', caption: 'Ceramic IR 50% - Driver Side' },
+
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.02.jpeg', caption: 'Carbon IR 2% Shade', feature: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (1).jpeg', caption: 'Carbon IR 2% - Side Profile', wide: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (10).jpeg', caption: 'Carbon IR 5% Shade' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (2).jpeg', caption: 'Carbon IR 5% - Exterior View' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (3).jpeg', caption: 'Carbon IR 15% Shade', tall: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (4).jpeg', caption: 'Carbon IR 15% - Angle View' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (5).jpeg', caption: 'Carbon IR 20% Shade', wide: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (6).jpeg', caption: 'Carbon IR 20% - Cabin View' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (7).jpeg', caption: 'Carbon IR 35% Shade' },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (8).jpeg', caption: 'Carbon IR 35% - Natural Light', tall: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03 (9).jpeg', caption: 'Carbon IR 50% Shade', wide: true },
+  { type: 'photo', category: 'auto', src: 'images/gallery/WhatsApp Image 2026-04-09 at 13.30.03.jpeg', caption: 'Carbon IR 50% - Driver Side' }
 ];
 
 (function () {
@@ -149,7 +162,6 @@ const GALLERY_ITEMS = [
       commercial: 'Commercial',
       headliner:  'Headliner',
       utv:        'UTV / Equipment',
-      video:      'Video',
     };
     return map[cat] || cat;
   }
@@ -203,6 +215,10 @@ const GALLERY_ITEMS = [
   function initNotice() {
     const btn = document.getElementById('noticeClose');
     const notice = document.getElementById('galleryNotice');
+    if (notice && GALLERY_ITEMS && GALLERY_ITEMS.length > 0) {
+      notice.style.display = 'none';
+      return;
+    }
     if (btn && notice) {
       btn.addEventListener('click', function () {
         notice.style.transition = 'opacity 0.3s, max-height 0.4s';
